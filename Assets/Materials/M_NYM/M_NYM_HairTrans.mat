@@ -7,20 +7,21 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: M_NYM_Hair
+  m_Name: M_NYM_HairTrans
   m_Shader: {fileID: 4800000, guid: d7382c7ce723986459ea4cfa9af8f54b, type: 3}
   m_ValidKeywords:
-  - _ENABLE_MATCAP
-  - _ENABLE_NORMALMAP
+  - _ENABLE_MATCAP_1ST
+  - _ENABLE_MATCAP_2ND
   - _ENABLE_OUTLINE
   - _ENABLE_SHADOW
   - _ENABLE_SHADOWMASK
   - _PREMULTIPLY_ALPHA
-  m_InvalidKeywords: []
+  m_InvalidKeywords:
+  - _ENABLE_MATCAP_DIFFUSE
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 2450
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   disabledShaderPasses: []
   m_SavedProperties:
@@ -171,6 +172,18 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap1st:
+        m_Texture: {fileID: 2800000, guid: 8c9c80e4cf1d33f47bdb8f54cfb86d67, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap1stMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap2nd:
         m_Texture: {fileID: 2800000, guid: 10fe4fe7a2b3bf740ac9ad9dad5c95f4, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -180,6 +193,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _MatCap2ndBumpMap:
         m_Texture: {fileID: 2800000, guid: b4a9724f104ae3d40a04ce2c380b01a2, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCap2ndMask:
+        m_Texture: {fileID: 2800000, guid: c20c10293b689944db9a7f599e4b9c86, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MatCap2ndTex:
@@ -194,6 +211,14 @@ Material:
         m_Texture: {fileID: 2800000, guid: b4a9724f104ae3d40a04ce2c380b01a2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _MatCapDiffuse:
+        m_Texture: {fileID: 2800000, guid: 8c9c80e4cf1d33f47bdb8f54cfb86d67, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MatCapDiffuseMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MatCapTex:
         m_Texture: {fileID: 2800000, guid: 8c9c80e4cf1d33f47bdb8f54cfb86d67, type: 3}
         m_Scale: {x: 1, y: 1}
@@ -203,7 +228,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _NormalMap:
-        m_Texture: {fileID: 2800000, guid: b4a9724f104ae3d40a04ce2c380b01a2, type: 3}
+        m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _OcclusionMap:
@@ -391,8 +416,12 @@ Material:
     - _EmissionMap_UVMode: 0
     - _EmissionParallaxDepth: 0
     - _EmissionUseGrad: 0
-    - _EnableMatCap: 1
-    - _EnableNormalMap: 1
+    - _EnableMatCap: 0
+    - _EnableMatCap1st: 1
+    - _EnableMatCap2nd: 1
+    - _EnableMatCapDiffuse: 1
+    - _EnableMatCapDiffuseMask: 0
+    - _EnableNormalMap: 0
     - _EnableOutline: 1
     - _EnableShadow: 1
     - _EnableShadowMask: 1
@@ -446,15 +475,20 @@ Material:
     - _Main3rdTex_Cull: 0
     - _Main3rdTex_UVMode: 0
     - _MainGradationStrength: 0
+    - _MatCap1stBlendMode: 3
+    - _MatCap1stBlendWeight: 1
+    - _MatCap1stMaskWeight: 1
     - _MatCap2ndApplyTransparency: 1
     - _MatCap2ndBackfaceMask: 0
     - _MatCap2ndBlend: 1
     - _MatCap2ndBlendMode: 1
+    - _MatCap2ndBlendWeight: 1
     - _MatCap2ndBumpScale: 1
     - _MatCap2ndCustomNormal: 1
     - _MatCap2ndEnableLighting: 0.938
     - _MatCap2ndLod: 0
     - _MatCap2ndMainStrength: 0
+    - _MatCap2ndMaskWeight: 1
     - _MatCap2ndNormalStrength: 1
     - _MatCap2ndPerspective: 1
     - _MatCap2ndShadowMask: 0
@@ -463,7 +497,10 @@ Material:
     - _MatCapApplyTransparency: 1
     - _MatCapBackfaceMask: 0
     - _MatCapBlend: 1
-    - _MatCapBlendMode: 1
+    - _MatCapBlendMode: 3
+    - _MatCapBlendMode1st: 0
+    - _MatCapBlendModeDiffuse: 3
+    - _MatCapBlendWeight1st: 1
     - _MatCapBumpScale: 1
     - _MatCapCustomNormal: 1
     - _MatCapEnableLighting: 0
@@ -473,7 +510,8 @@ Material:
     - _MatCapPerspective: 1
     - _MatCapShadowMask: 0
     - _MatCapVRParallaxStrength: 1
-    - _MatCapWeight: 2
+    - _MatCapWeight: 1
+    - _MatCapWeightDiffuse: 1
     - _MatCapZRotCancel: 1
     - _Metallic: 0
     - _Mode: 0
@@ -504,6 +542,7 @@ Material:
     - _OutlineLitShadowReceive: 0
     - _OutlineOffsetFactor: 0
     - _OutlineOffsetUnits: 0
+    - _OutlineSmoothAdaptedValue: 0.3
     - _OutlineSrcBlend: 5
     - _OutlineSrcBlendAlpha: 1
     - _OutlineSrcBlendAlphaFA: 0
@@ -518,7 +557,7 @@ Material:
     - _OutlineVectorScale: 1
     - _OutlineVectorUVMode: 0
     - _OutlineVertexR2Width: 0
-    - _OutlineWidth: 0.3
+    - _OutlineWidth: 0.25
     - _OutlineWidthMax: 0.5
     - _OutlineWidthMin: 0
     - _OutlineZBias: 0
@@ -579,19 +618,19 @@ Material:
     - _RimNormalStrength: 1
     - _RimShadowMask: 0.5
     - _RimVRParallaxStrength: 1
-    - _Shadow2ndBlur: 0.2
-    - _Shadow2ndBorder: 0.5
+    - _Shadow2ndBlur: 0.119
+    - _Shadow2ndBorder: 0.328
     - _Shadow2ndNormalStrength: 1
     - _Shadow2ndReceive: 0
     - _Shadow3rdBlur: 0.189
     - _Shadow3rdBorder: 0.25
     - _Shadow3rdNormalStrength: 1
     - _Shadow3rdReceive: 0
-    - _ShadowBlur: 0.056
+    - _ShadowBlur: 0.546
     - _ShadowBlurMaskLOD: 0
     - _ShadowBorder: 0.5
     - _ShadowBorderMaskLOD: 0
-    - _ShadowBorderRange: 0.081
+    - _ShadowBorderRange: 0
     - _ShadowColorType: 0
     - _ShadowEnvStrength: 1
     - _ShadowFlatBlur: 1
@@ -711,11 +750,13 @@ Material:
     - _Main3rdTex_ScrollRotate: {r: 0, g: 0, b: 0, a: 0}
     - _MainTexHSVG: {r: 0, g: 1, b: 1, a: 1}
     - _MainTex_ScrollRotate: {r: 0, g: 0, b: 0, a: 0}
+    - _MatCap1stTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCap2ndBlendUV1: {r: 0, g: 0, b: 0, a: 0}
     - _MatCap2ndColor: {r: 0.5801887, g: 1, b: 0.7391455, a: 1}
+    - _MatCap2ndTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _MatCapBlendUV1: {r: 0, g: 0, b: 0, a: 0}
     - _MatCapColor: {r: 1, g: 1, b: 1, a: 1}
-    - _OutlineColor: {r: 0.14117648, g: 0.14509805, b: 0.14901961, a: 1}
+    - _OutlineColor: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
     - _OutlineLitColor: {r: 1, g: 0.19999996, b: 0, a: 0}
     - _OutlineTexHSVG: {r: 0, g: 1, b: 1, a: 1}
     - _OutlineTex_ScrollRotate: {r: 0, g: 0, b: 0, a: 0}
@@ -725,7 +766,7 @@ Material:
     - _RimColor: {r: 0.7137255, g: 0.7730809, b: 1, a: 1}
     - _RimIndirColor: {r: 1, g: 1, b: 1, a: 1}
     - _Shadow2ndColor: {r: 0.76355857, g: 0.73333335, b: 0.8509804, a: 1}
-    - _Shadow3rdColor: {r: 0, g: 0, b: 0, a: 0}
+    - _Shadow3rdColor: {r: 0.7122642, g: 0.7715256, b: 1, a: 0}
     - _ShadowAOShift: {r: 1, g: 0, b: 1, a: 0}
     - _ShadowAOShift2: {r: 1, g: 0, b: 1, a: 0}
     - _ShadowBorderColor: {r: 1, g: 0.7058824, b: 0.30588236, a: 1}

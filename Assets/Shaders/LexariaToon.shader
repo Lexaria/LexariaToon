@@ -6,27 +6,46 @@ Shader "Lexaria/Toon"
 		[Header(Texture)]
 		[MainTexture] _BaseMap("Base Map (RGB) / Alpha (A)", 2D) = "white" {}
 		[MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
-		_ShadowMask ("Shadow Mask", 2D) = "white" {}
 		_OutlineMask ("Outline Mask", 2D) = "white" {}
-		_SpecularMask ("Specular Mask", 2D) = "black" {}
+		
+		[Header(Emission)]
+		[Space(5)]
 		_EmissionMap ("Emission Map", 2D) = "black" {}
 		[HDR] _EmissionColor ("Emission Color", Color) = (1, 1, 1, 1)
+		[Space(30)]
 		
-		[Toggle(_ENABLE_MATCAP)] _EnableMatCap("Enable Mat Cap?", float) = 1
-		_MatCap ("MatCap", 2D) = "white" {}
-		_MatCapWeight ("MatCap Weight", Range(0, 5)) = 1
-		[Enum(Normal, 0, Add, 1, Screen, 2, Multi, 3)] _MatCapBlendMode ("MatCap Blend Mode", Float) = 0
-
+		
+		[Header(MatCap)]
+		[Space(5)]
+		[Toggle(_ENABLE_MATCAP_1ST)] _EnableMatCap1st("Enable 1st Mat Cap?", float) = 1
+		[HDR] _MatCap1stTintColor ("1st Mat Cap Tint Color", Color) = (1, 1, 1, 1)
+		_MatCap1st ("1st MatCap", 2D) = "white" {}
+		_MatCap1stBlendWeight ("1st MatCap Blend Weight", Range(0, 5)) = 1
+		[Enum(Normal, 0, Add, 1, Screen, 2, Multi, 3)] _MatCap1stBlendMode ("1st MatCap Blend Mode", Float) = 0
+		_MatCap1stMask ("1st MatCap Mask", 2D) = "white" {}
+		_MatCap1stMaskWeight ("1st MatCap Mask Weight", Range(0, 1)) = 1
+		[Space(15)]
+		[Toggle(_ENABLE_MATCAP_2ND)] _EnableMatCap2nd("Enable 2nd Mat Cap?", float) = 0
+		[HDR] _MatCap2ndTintColor ("2nd Mat Cap Tint Color", Color) = (1, 1, 1, 1)
+		_MatCap2nd ("2nd MatCap", 2D) = "white" {}
+		_MatCap2ndBlendWeight ("2nd MatCap Blend Weight", Range(0, 5)) = 1
+		[Enum(Normal, 0, Add, 1, Screen, 2, Multi, 3)] _MatCap2ndBlendMode ("2nd MatCap Blend Mode", Float) = 0
+		_MatCap2ndMask ("2nd MatCap Mask", 2D) = "white" {}
+		_MatCap2ndMaskWeight ("2nd MatCap Mask Weight", Range(0, 1)) = 1
+		[Space(30)]
+		
+		[Header(ShadowMap)]
+		[Space(5)]
+		_ShadowMask ("Shadow Mask", 2D) = "white" {}
 		[Toggle(_ENABLE_SHADOWMASK)] _EnableShadowMask("Enable ShadowMask?", float) = 1
 		[Toggle(_ENABLE_SHADOW)] _EnableShadow("Enable Shadow?", float) = 1
+		[Space(30)]
+		
 		[Header(Outline)]
 		[Space(5)]
 		[Toggle(_ENABLE_OUTLINE)] _EnableOutline("Enable Outline?", float) = 1
-		_OutlineWidth ("Outline Width", Range(0, 1)) = 0.03
-		_OutlineWidthMax ("Outline Width Max", Range(0, 3)) = 1
+		_OutlineWidth ("Outline Width", Range(0, 5)) = 0.5
 		_OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
-		_OutlineDepthWeight ("Outline Depth Weight", Range(0, 10)) = 1
-		_OutlineColorDepthWeight ("Outline Color Depth Weight", Range(0, 1)) = 0.5
 		[Space(30)]
 		
 		[Header(Normal)]
@@ -51,6 +70,8 @@ Shader "Lexaria/Toon"
 		Tags
 		{
 			"RenderType" = "Opaque" "RenderPipeline" = "UniversalRenderPipeline"
+            "UniversalMaterialType" = "Lit"
+            "Queue"="Geometry"
 		}
 		Pass
 		{
@@ -60,7 +81,9 @@ Shader "Lexaria/Toon"
 				"LightMode" = "UniversalForward"
 			}
 			Blend [_SrcBlend][_DstBlend]
+			ZTest LEqual
 			ZWrite [_ZWrite]
+			Cull Back
 			HLSLPROGRAM
 			#pragma target 3.5
 			#pragma vertex ToonVert
@@ -69,8 +92,8 @@ Shader "Lexaria/Toon"
 			#pragma shader_feature _ENABLE_NORMALMAP
 			#pragma shader_feature _ENABLE_SHADOW
 			#pragma shader_feature _ENABLE_SHADOWMASK
-			#pragma shader_feature _DEBUG
-			#pragma shader_feature _ENABLE_MATCAP
+			#pragma shader_feature _ENABLE_MATCAP_1ST
+			#pragma shader_feature _ENABLE_MATCAP_2ND
 
 
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN

@@ -6,13 +6,22 @@
 #include "Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"
 #include "Lexaria_common_functions.hlsl"
 
-Texture2D _BaseMap, _NormalMap, _ShadowMask, _MatCap, _EmissionMap;
-SamplerState sampler_BaseMap, sampler_NormalMap, sampler_ShadowMask, sampler_MatCap, sampler_EmissionMap;
+Texture2D _BaseMap, _NormalMap, _ShadowMask, _EmissionMap;
+SamplerState sampler_BaseMap, sampler_NormalMap, sampler_ShadowMask, sampler_EmissionMap;
+
+
+Texture2D _MatCap1st, _MatCap1stMask, _MatCap2nd, _MatCap2ndMask;
+SamplerState sampler_MatCap1st, sampler_MatCap1stMask, sampler_MatCap2nd, sampler_MatCap2ndMask;
+
 
 CBUFFER_START(UnityPerMaterial)
 float4 _BaseMap_ST;
 float _BumpScale;
-float _MatCapWeight, _MatCapBlendMode;
+
+float _MatCap1stBlendWeight, _MatCap1stBlendMode, _MatCap1stMaskWeight;
+float _MatCap2ndBlendWeight, _MatCap2ndBlendMode, _MatCap2ndMaskWeight;
+float4 _MatCap1stTintColor, _MatCap2ndTintColor;
+
 float4 _EmissionColor;
 CBUFFER_END
 
@@ -113,15 +122,25 @@ half4 ToonFrag(Varyings input) : SV_Target
     float4 finalColor;
     finalColor = float4(var_BaseMap.rgb * half_lambert * lightColorWithAttenuation, var_BaseMap.a);
 
-    float4 var_matcap = 0;
-    #ifdef _ENABLE_MATCAP
-    var_matcap = SAMPLE_TEXTURE2D(_MatCap, sampler_MatCap, matcapUV);
-    float3 matcapColor = lerp(var_matcap.rgb, var_matcap.rgb * var_BaseMap.rgb, _MatCapWeight);
-    finalColor.rgb = lexariaBlendColor(finalColor.rgb, matcapColor, var_matcap.a, _MatCapBlendMode);
+    float4 var_matcap1st = 0;
+    #ifdef _ENABLE_MATCAP_1ST
+        var_matcap1st = SAMPLE_TEXTURE2D(_MatCap1st, sampler_MatCap1st, matcapUV) * _MatCap1stTintColor;
+        float var_matcap1stMask = SAMPLE_TEXTURE2D(_MatCap1stMask, sampler_MatCap1stMask, input.uv).r;
+        var_matcap1st = var_matcap1st * var_matcap1stMask * _MatCap1stMaskWeight;
+        float3 matcap1stColor = lerp(var_matcap1st.rgb, var_matcap1st.rgb * var_BaseMap.rgb, _MatCap1stBlendWeight);
+        finalColor.rgb = lexariaBlendColor(finalColor.rgb, matcap1stColor, var_matcap1st.a, _MatCap1stBlendMode);
+    #endif
+    float4 var_matcap2nd = 0;
+
+    #ifdef _ENABLE_MATCAP_2ND
+        var_matcap2nd = SAMPLE_TEXTURE2D(_MatCap2nd, sampler_MatCap2nd, matcapUV) * _MatCap2ndTintColor;
+        float var_matcap2ndMask = SAMPLE_TEXTURE2D(_MatCap2ndMask, sampler_MatCap2ndMask, input.uv).r;
+        var_matcap2nd = var_matcap2nd * var_matcap2ndMask * _MatCap2ndMaskWeight;
+        float3 matcap2ndColor = lerp(var_matcap2nd.rgb, var_matcap2nd.rgb * var_BaseMap.rgb, _MatCap2ndBlendWeight);
+        finalColor.rgb = lexariaBlendColor(finalColor.rgb, matcap2ndColor, var_matcap2nd.a, _MatCap2ndBlendMode);
     #endif
 
     finalColor.rgb += var_EmissionMap.rgb * _EmissionColor.rgb;
-    // finalColor += var_EmissionMap * _EmissionColor;
 
     #ifdef _PREMULTIPLY_ALPHA
         finalColor.rgb *= finalColor.a;
