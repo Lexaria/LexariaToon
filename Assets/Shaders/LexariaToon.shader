@@ -46,6 +46,7 @@ Shader "Lexaria/Toon"
 		[Toggle(_ENABLE_OUTLINE)] _EnableOutline("Enable Outline?", float) = 1
 		_OutlineWidth ("Outline Width", Range(0, 5)) = 0.5
 		_OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
+		[Toggle(_SMOOTH_NORMAL_VERTEXCOLOR)] _SmoothNormalVertexColor("Use Smoothed Normal in Vertex Color ?", float) = 0
 		[Space(30)]
 		
 		[Header(Normal)]
@@ -94,6 +95,7 @@ Shader "Lexaria/Toon"
 			#pragma shader_feature _ENABLE_SHADOWMASK
 			#pragma shader_feature _ENABLE_MATCAP_1ST
 			#pragma shader_feature _ENABLE_MATCAP_2ND
+			#pragma shader_feature _DEBUG
 
 
 			#pragma multi_compile _ _MAIN_LIGHT_SHADOWS _MAIN_LIGHT_SHADOWS_CASCADE _MAIN_LIGHT_SHADOWS_SCREEN
@@ -119,10 +121,11 @@ Shader "Lexaria/Toon"
 			#pragma fragment OutlineFrag
 			#include"Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl"
 			#pragma shader_feature _ENABLE_OUTLINE
+			#pragma shader_feature _SMOOTH_NORMAL_VERTEXCOLOR
 			#include "ToonOutline.hlsl"
 			ENDHLSL
 
-			}
+		}
 		UsePass "Universal Render Pipeline/Lit/ShadowCaster"
 	}
 	

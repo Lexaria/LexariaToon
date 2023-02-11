@@ -20,6 +20,7 @@ struct Attributes
     float2 uv: TEXCOORD0;
     float3 normalOS: NORMAL;
     float4 tangentOS: TANGENT;
+    float4 color : COLOR;
 };
 
 struct Varyings
@@ -27,6 +28,7 @@ struct Varyings
     float4 positionCS: SV_POSITION;
     float2 uv: TEXCOORD0;
     float4 positionWSAndOutlineFix : TEXCOORD1;
+
 };
 
 // FOV Correction
@@ -74,7 +76,12 @@ Varyings OutlineVert(Attributes IN)
 {
     Varyings OUT;
     VertexPositionInputs vertexInput = GetVertexPositionInputs(IN.positionOS);
-    VertexNormalInputs vertexNormalInput = GetVertexNormalInputs(IN.normalOS, IN.tangentOS);
+    #ifdef _SMOOTH_NORMAL_VERTEXCOLOR
+        float3 vertexColorNormal = IN.color.xyz;
+        VertexNormalInputs vertexNormalInput = GetVertexNormalInputs(vertexColorNormal, IN.tangentOS);
+    #else
+        VertexNormalInputs vertexNormalInput = GetVertexNormalInputs(IN.normalOS, IN.tangentOS);
+    #endif
     
     float var_OutlineMask = SAMPLE_TEXTURE2D_LOD(_OutlineMask, sampler_OutlineMask, IN.uv, 0).r;
     float3 positionWS = vertexInput.positionWS;

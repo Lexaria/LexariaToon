@@ -564,7 +564,7 @@ Material:
     - _OutlineVectorScale: 1
     - _OutlineVectorUVMode: 0
     - _OutlineVertexR2Width: 0
-    - _OutlineWidth: 0.35
+    - _OutlineWidth: 0.5
     - _OutlineWidthMax: 3
     - _OutlineWidthMin: 0
     - _OutlineZBias: 0
@@ -621,6 +621,7 @@ Material:
     - _ShadowStrength: 1
     - _ShadowStrengthMaskLOD: 0
     - _ShiftBackfaceUV: 0
+    - _SmoothNormalVertexColor: 0
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularBlur: 0

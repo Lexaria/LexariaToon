@@ -18,6 +18,7 @@ Material:
   - _ENABLE_SHADOWMASK
   - _PREMULTIPLY_ALPHA
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  - _SMOOTH_NORMAL_VERTEXCOLOR
   m_InvalidKeywords:
   - GEOM_TYPE_MESH
   - _ENABLE_MATCAP_DIFFUSE
@@ -566,7 +567,7 @@ Material:
     - _OutlineVectorScale: 1
     - _OutlineVectorUVMode: 0
     - _OutlineVertexR2Width: 0
-    - _OutlineWidth: 0.25
+    - _OutlineWidth: 0.1
     - _OutlineWidthMax: 0.5
     - _OutlineWidthMin: 0
     - _OutlineZBias: 0
@@ -623,6 +624,7 @@ Material:
     - _ShadowStrength: 1
     - _ShadowStrengthMaskLOD: 0
     - _ShiftBackfaceUV: 0
+    - _SmoothNormalVertexColor: 1
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
     - _SpecularBlur: 0
