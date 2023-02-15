@@ -264,6 +264,10 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _RimMask:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _Shadow2ndColorTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -387,6 +391,8 @@ Material:
     - _Bump2ndMap_UVMode: 0
     - _Bump2ndScale: 1
     - _BumpScale: 1
+    - _CelShadeMidPoint: 0.5
+    - _CelShadeSoftness: 0.075
     - _ColorMask: 15
     - _Cull: 2
     - _Cutoff: 0.001
@@ -444,6 +450,7 @@ Material:
     - _GlossyReflections: 1
     - _IgnoreEncryption: 0
     - _Invisible: 0
+    - _IsFace: 0
     - _LightMaxLimit: 1
     - _LightMinLimit: 0
     - _Main2ndDissolveNoiseStrength: 0.1
@@ -566,6 +573,7 @@ Material:
     - _Parallax: 0.02
     - _ParallaxOffset: 0.5
     - _PremulAlpha: 1
+    - _ReceiveShadowMappingAmount: 0
     - _Reflectance: 0.04
     - _ReflectionApplyTransparency: 1
     - _ReflectionBlendMode: 1
@@ -580,14 +588,17 @@ Material:
     - _RimDirRange: 0
     - _RimDirStrength: 0
     - _RimEnableLighting: 1
-    - _RimFresnelPower: 3.5
+    - _RimFresnelPower: 4
     - _RimIndirBlur: 0.1
     - _RimIndirBorder: 0.5
     - _RimIndirRange: 0
-    - _RimMainStrength: 0
+    - _RimMainStrength: 0.1
     - _RimNormalStrength: 1
+    - _RimOffset: 0.002
     - _RimShadowMask: 0.5
+    - _RimThreshold: 0.01
     - _RimVRParallaxStrength: 1
+    - _RimWidth: 0.5
     - _Shadow2ndBlur: 0.1
     - _Shadow2ndBorder: 0.15
     - _Shadow2ndNormalStrength: 1
@@ -680,6 +691,7 @@ Material:
     - _BackfaceColor: {r: 0, g: 0, b: 0, a: 0}
     - _BacklightColor: {r: 0.85, g: 0.8, b: 0.7, a: 1}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
+    - _BorderTintColor: {r: 1, g: 0.73333335, b: 0.21176471, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Color2nd: {r: 1, g: 1, b: 1, a: 1}
     - _Color3rd: {r: 1, g: 1, b: 1, a: 1}
@@ -703,6 +715,7 @@ Material:
     - _GlitterParams2: {r: 0.25, g: 0, b: 0, a: 0}
     - _Keys: {r: 0, g: 0, b: 0, a: 0}
     - _LightDirectionOverride: {r: 0.001, g: 0, b: 0, a: 0}
+    - _LightTintColor: {r: 1, g: 1, b: 1, a: 1}
     - _Main2ndDissolveColor: {r: 1, g: 1, b: 1, a: 1}
     - _Main2ndDissolveNoiseMask_ScrollRotate: {r: 0, g: 0, b: 0, a: 0}
     - _Main2ndDissolveParams: {r: 0, g: 0, b: 0.5, a: 0.1}
@@ -741,6 +754,7 @@ Material:
     - _ShadowAOShift2: {r: 1, g: 0, b: 1, a: 0}
     - _ShadowBorderColor: {r: 1, g: 0.09999997, b: 0, a: 1}
     - _ShadowColor: {r: 0.82, g: 0.76, b: 0.85, a: 1}
+    - _ShadowTintColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
     - _e2ga0: {r: 1, g: 0, b: 0, a: 0}
     - _e2ga1: {r: 1, g: 0, b: 0, a: 1}
     - _e2ga2: {r: 1, g: 0, b: 0, a: 0}

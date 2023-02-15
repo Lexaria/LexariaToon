@@ -8,12 +8,33 @@ Shader "Lexaria/Toon"
 		[MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
 		_OutlineMask ("Outline Mask", 2D) = "white" {}
 		
+		[Header(Cel Shading)]
+		[Space(5)]
+		[Toggle(_ISFACE)] _IsFace("Is Face?", float) = 0
+		_CelShadeMidPoint ("Cel Shade Mid Point", Range(0, 1)) = 0.5
+		_CelShadeSoftness ("Cel Shade Softness", Range(0,1)) = 0.05
+		_LightTintColor ("Light Tint Color", Color) = (1, 1, 1, 1)
+		_ShadowTintColor ("Shadow Tint Color", Color) = (1, 1, 1, 1)
+		_BorderTintColor ("Border Tint Color", Color) = (1, 1, 1, 1)
+		_ReceiveShadowMappingAmount ("Receive ShadowMapping Amount", Range(0, 1)) = 0.2
+		[Space(30)]
+		
 		[Header(Emission)]
 		[Space(5)]
 		_EmissionMap ("Emission Map", 2D) = "black" {}
 		[HDR] _EmissionColor ("Emission Color", Color) = (1, 1, 1, 1)
 		[Space(30)]
 		
+		
+		[Header(Rim)]
+		[Space(5)]
+		_RimMask ("Rim Mask", 2D) = "white" {}
+		_RimColor ("Rim Color", Color) = (1, 1, 1, 1)
+		_RimMainStrength ("Rim Main Strength", Range(0, 1)) = 0.1
+		_RimFresnelPower ("Rim FresnelPower", Range(0, 20)) = 1
+		_RimOffset ("Rim Offset", Range(0, 0.01)) = 0.01
+		_RimThreshold ("Rim Threshold", Range(0, 0.05)) = 0.01
+		[Space(30)]		
 		
 		[Header(MatCap)]
 		[Space(5)]
@@ -127,6 +148,8 @@ Shader "Lexaria/Toon"
 
 		}
 		UsePass "Universal Render Pipeline/Lit/ShadowCaster"
+		UsePass "Universal Render Pipeline/Lit/DepthOnly"
+		UsePass "Universal Render Pipeline/Lit/DepthNormals"
 	}
 	
 	CustomEditor "LexariaCustomEditor"
