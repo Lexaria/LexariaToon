@@ -432,6 +432,7 @@ Material:
     - _EnableOutline: 1
     - _EnableShadow: 1
     - _EnableShadowMask: 1
+    - _EnableSpecular: 0
     - _FlipNormal: 0
     - _GSAAStrength: 0
     - _GlitterAngleRandomize: 0
@@ -619,13 +620,13 @@ Material:
     - _RimDirRange: 0
     - _RimDirStrength: 0
     - _RimEnableLighting: 1
-    - _RimFresnelPower: 4
+    - _RimFresnelPower: 0.3
     - _RimIndirBlur: 0.1
     - _RimIndirBorder: 0.5
     - _RimIndirRange: 0
     - _RimMainStrength: 0.1
     - _RimNormalStrength: 1
-    - _RimOffset: 0.002
+    - _RimOffset: 0.0035
     - _RimShadowMask: 0.5
     - _RimThreshold: 0.01
     - _RimVRParallaxStrength: 1
@@ -654,13 +655,18 @@ Material:
     - _ShadowStrength: 1
     - _ShadowStrengthMaskLOD: 0
     - _ShiftBackfaceUV: 0
+    - _Shiness: 7.4
+    - _ShinessSide: 2
     - _SmoothNormalVertexColor: 1
     - _Smoothness: 0.654
     - _SmoothnessTextureChannel: 0
+    - _SpecSmooth: 0.01
+    - _SpecSmoothSide: 0.01
     - _SpecularBlur: 0.206
     - _SpecularBorder: 0.5
     - _SpecularHighlights: 1
     - _SpecularNormalStrength: 1
+    - _SpecularSide: 0.1
     - _SpecularToon: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -786,6 +792,8 @@ Material:
     - _ShadowBorderColor: {r: 1, g: 0.7058824, b: 0.30588236, a: 1}
     - _ShadowColor: {r: 0.654902, g: 0.70508134, b: 0.8862745, a: 1}
     - _ShadowTintColor: {r: 0.8479293, g: 0.83321464, b: 0.8773585, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularSideColor: {r: 1, g: 1, b: 1, a: 1}
     - _e2ga0: {r: 1, g: 0, b: 0, a: 0}
     - _e2ga1: {r: 1, g: 0, b: 0, a: 1}
     - _e2ga2: {r: 1, g: 0, b: 0, a: 0}

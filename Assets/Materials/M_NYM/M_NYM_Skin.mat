@@ -437,6 +437,7 @@ Material:
     - _EnableOutline: 1
     - _EnableShadow: 1
     - _EnableShadowMask: 1
+    - _EnableSpecular: 0
     - _FlipNormal: 0
     - _GSAAStrength: 0
     - _GlitterAngleRandomize: 0
@@ -596,15 +597,15 @@ Material:
     - _RimDirRange: 0
     - _RimDirStrength: 0
     - _RimEnableLighting: 1
-    - _RimFresnelPower: 4
+    - _RimFresnelPower: 3
     - _RimIndirBlur: 0.1
     - _RimIndirBorder: 0.5
     - _RimIndirRange: 0
-    - _RimMainStrength: 0.1
+    - _RimMainStrength: 0.15
     - _RimNormalStrength: 1
-    - _RimOffset: 0.002
+    - _RimOffset: 0.003
     - _RimShadowMask: 0.5
-    - _RimThreshold: 0.01
+    - _RimThreshold: 0.015
     - _RimVRParallaxStrength: 1
     - _RimWidth: 0.5
     - _Shadow2ndBlur: 0.03
@@ -632,13 +633,18 @@ Material:
     - _ShadowStrength: 1
     - _ShadowStrengthMaskLOD: 0
     - _ShiftBackfaceUV: 0
+    - _Shiness: 9.1
+    - _ShinessSide: 7.4
     - _SmoothNormalVertexColor: 0
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
+    - _SpecSmooth: 0.15
+    - _SpecSmoothSide: 0.44
     - _SpecularBlur: 0
     - _SpecularBorder: 0.5
     - _SpecularHighlights: 1
     - _SpecularNormalStrength: 1
+    - _SpecularSide: 0.1
     - _SpecularToon: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -754,7 +760,7 @@ Material:
     - _OutlineTex_ScrollRotate: {r: 0, g: 0, b: 0, a: 0}
     - _ReflectionColor: {r: 1, g: 1, b: 1, a: 1}
     - _ReflectionCubeColor: {r: 0, g: 0, b: 0, a: 1}
-    - _RimColor: {r: 0.7647059, g: 0.67058825, b: 0.64705884, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 1}
     - _RimIndirColor: {r: 1, g: 1, b: 1, a: 1}
     - _Shadow2ndColor: {r: 0.9333334, g: 0.8235295, b: 0.89019614, a: 1}
     - _Shadow3rdColor: {r: 0, g: 0, b: 0, a: 0}
@@ -763,6 +769,8 @@ Material:
     - _ShadowBorderColor: {r: 1, g: 0.73333335, b: 0.21176472, a: 1}
     - _ShadowColor: {r: 0.86666673, g: 0.7254902, b: 0.7294118, a: 1}
     - _ShadowTintColor: {r: 0.8490566, g: 0.7742969, b: 0.7742969, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularSideColor: {r: 0.9921569, g: 0.83921576, b: 0.74509805, a: 1}
     - _e2ga0: {r: 1, g: 0, b: 0, a: 0}
     - _e2ga1: {r: 1, g: 0, b: 0, a: 1}
     - _e2ga2: {r: 1, g: 0, b: 0, a: 0}

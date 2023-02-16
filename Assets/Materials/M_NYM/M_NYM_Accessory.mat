@@ -16,6 +16,7 @@ Material:
   - _ENABLE_OUTLINE
   - _ENABLE_SHADOW
   - _ENABLE_SHADOWMASK
+  - _ENABLE_SPECULAR
   - _NORMALMAP
   - _PREMULTIPLY_ALPHA
   - _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
@@ -443,6 +444,7 @@ Material:
     - _EnableOutline: 1
     - _EnableShadow: 1
     - _EnableShadowMask: 1
+    - _EnableSpecular: 1
     - _FlipNormal: 0
     - _GSAAStrength: 0
     - _GlitterAngleRandomize: 0
@@ -638,13 +640,18 @@ Material:
     - _ShadowStrength: 1
     - _ShadowStrengthMaskLOD: 0
     - _ShiftBackfaceUV: 0
+    - _Shiness: 9.5
+    - _ShinessSide: 7.5
     - _SmoothNormalVertexColor: 1
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
+    - _SpecSmooth: 0.67
+    - _SpecSmoothSide: 0.35
     - _SpecularBlur: 0
     - _SpecularBorder: 0.5
     - _SpecularHighlights: 1
     - _SpecularNormalStrength: 1
+    - _SpecularSide: 0.1
     - _SpecularToon: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -769,6 +776,8 @@ Material:
     - _ShadowBorderColor: {r: 1, g: 0.73333335, b: 0.21176472, a: 1}
     - _ShadowColor: {r: 0.7, g: 0.75, b: 0.85, a: 1}
     - _ShadowTintColor: {r: 0.74985164, g: 0.8068939, b: 0.8396226, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularSideColor: {r: 0.808526, g: 0.7256141, b: 0.8773585, a: 1}
     - _e2ga0: {r: 1, g: 0, b: 0, a: 0}
     - _e2ga1: {r: 1, g: 0, b: 0, a: 1}
     - _e2ga2: {r: 1, g: 0, b: 0, a: 0}

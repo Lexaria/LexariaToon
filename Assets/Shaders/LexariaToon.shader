@@ -6,7 +6,6 @@ Shader "Lexaria/Toon"
 		[Header(Texture)]
 		[MainTexture] _BaseMap("Base Map (RGB) / Alpha (A)", 2D) = "white" {}
 		[MainColor] _BaseColor("Base Color", Color) = (1, 1, 1, 1)
-		_OutlineMask ("Outline Mask", 2D) = "white" {}
 		
 		[Header(Cel Shading)]
 		[Space(5)]
@@ -17,6 +16,17 @@ Shader "Lexaria/Toon"
 		_ShadowTintColor ("Shadow Tint Color", Color) = (1, 1, 1, 1)
 		_BorderTintColor ("Border Tint Color", Color) = (1, 1, 1, 1)
 		_ReceiveShadowMappingAmount ("Receive ShadowMapping Amount", Range(0, 1)) = 0.2
+		[Space(30)]
+		
+		
+		[Header(Spec)]
+		[Space(5)]
+		[Toggle(_ENABLE_SPECULAR)] _EnableSpecular("Enable Specular?", float) = 0
+		_SpecSmooth ("Spec Smooth", Range(0, 1)) = 0.01
+		_Shiness ("Shiness", Range(0.5, 20)) = 5
+		_SpecSmoothSide ("Side Spec Smooth", Range(0, 1)) = 0.01
+		_ShinessSide ("Side Shiness", Range(0.5, 20)) = 2
+		_SpecularSideColor ("Specular Side Color", Color) = (1, 1, 1, 1)
 		[Space(30)]
 		
 		[Header(Emission)]
@@ -64,6 +74,7 @@ Shader "Lexaria/Toon"
 		
 		[Header(Outline)]
 		[Space(5)]
+		_OutlineMask ("Outline Mask", 2D) = "white" {}
 		[Toggle(_ENABLE_OUTLINE)] _EnableOutline("Enable Outline?", float) = 1
 		_OutlineWidth ("Outline Width", Range(0, 5)) = 0.5
 		_OutlineColor ("Outline Color", Color) = (0, 0, 0, 1)
@@ -116,6 +127,7 @@ Shader "Lexaria/Toon"
 			#pragma shader_feature _ENABLE_SHADOWMASK
 			#pragma shader_feature _ENABLE_MATCAP_1ST
 			#pragma shader_feature _ENABLE_MATCAP_2ND
+			#pragma shader_feature _ENABLE_SPECULAR
 			#pragma shader_feature _DEBUG
 
 

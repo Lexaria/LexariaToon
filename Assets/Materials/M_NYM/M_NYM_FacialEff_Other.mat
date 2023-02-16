@@ -427,6 +427,7 @@ Material:
     - _EnableOutline: 0
     - _EnableShadow: 0
     - _EnableShadowMask: 0
+    - _EnableSpecular: 0
     - _FlipNormal: 0
     - _GSAAStrength: 0
     - _GlitterAngleRandomize: 0
@@ -651,13 +652,16 @@ Material:
     - _ShadowStrength: 1
     - _ShadowStrengthMaskLOD: 0
     - _ShiftBackfaceUV: 0
+    - _Shiness: 7.4
     - _SmoothNormalVertexColor: 1
     - _Smoothness: 1
     - _SmoothnessTextureChannel: 0
+    - _SpecSmooth: 0.01
     - _SpecularBlur: 0
     - _SpecularBorder: 0.5
     - _SpecularHighlights: 1
     - _SpecularNormalStrength: 1
+    - _SpecularSide: 0.1
     - _SpecularToon: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
@@ -783,6 +787,8 @@ Material:
     - _ShadowBorderColor: {r: 1, g: 0.09999997, b: 0, a: 1}
     - _ShadowColor: {r: 0.82, g: 0.76, b: 0.85, a: 1}
     - _ShadowTintColor: {r: 0.45, g: 0.45, b: 0.45, a: 1}
+    - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecularSideColor: {r: 1, g: 1, b: 1, a: 1}
     - _e2ga0: {r: 1, g: 0, b: 0, a: 0}
     - _e2ga1: {r: 1, g: 0, b: 0, a: 1}
     - _e2ga2: {r: 1, g: 0, b: 0, a: 0}

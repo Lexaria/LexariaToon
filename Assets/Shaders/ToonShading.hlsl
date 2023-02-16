@@ -34,6 +34,9 @@ float _CelShadeMidPoint, _CelShadeSoftness;
 float4 _LightTintColor, _ShadowTintColor, _BorderTintColor;
 float _ReceiveShadowMappingAmount;
 float _IsFace;
+
+float _SpecSmooth, _Shiness, _SpecSmoothSide, _ShinessSide;
+float4 _SpecularSideColor;
 CBUFFER_END
 
 
@@ -116,7 +119,7 @@ half4 ToonFrag(Varyings input) : SV_Target
         shadowCoord = TransformWorldToShadowCoord(input.positionWSAndFogFactor.xyz);
     #endif
     Light mainLight = GetMainLight(shadowCoord);
-    float3 lightDir = normalize(mainLight.direction);
+    float3 lightDirWS = normalize(mainLight.direction);
     float attenuation = mainLight.shadowAttenuation;
 
     // Additional Light
@@ -152,10 +155,9 @@ half4 ToonFrag(Varyings input) : SV_Target
     float3 viewDirVS = TransformWorldToViewDir(viewDirWS, true);
     float2 matcapUV = cross(normalVS, viewDirVS).xy;
     matcapUV = float2(-matcapUV.y, matcapUV.x) * 0.5 + 0.5;
-    float NdotL = dot(normalWS, lightDir);
-    float half_lambert = pow(NdotL * 0.5 + 0.5, 2);
-
-
+    float NdotL = dot(normalWS, lightDirWS);
+    float3 hDirWS = normalize(viewDirWS + lightDirWS);
+    
     // Rim Light
     float depth = input.positionNDC.z / input.positionNDC.w;
     float linearEyeDepth = LinearEyeDepth(depth, _ZBufferParams);
@@ -202,6 +204,23 @@ half4 ToonFrag(Varyings input) : SV_Target
 
     finalColor.rgb += var_EmissionMap.rgb * _EmissionColor.rgb;
 
+    // Spec
+    #ifdef _ENABLE_SPECULAR
+
+    float specside = pow(dot(hDirWS, normalWS) * 0.5 + 0.5, exp2(_ShinessSide));
+    specside = smoothstep(0.5 - _SpecSmoothSide, 0.5 + _SpecSmoothSide, specside);
+    float3 specularSideColor = lightColor * _SpecularSideColor * saturate(attenuation + 0.5);
+    finalColor.rgb = lerp(finalColor.rgb, specularSideColor, saturate(specside));
+
+
+    float spec = pow(dot(hDirWS, normalWS) * 0.5 + 0.5, exp2(_Shiness));
+    spec = smoothstep(0.5 - _SpecSmooth, 0.5 + _SpecSmooth, spec);
+    float3 specularColor = lightColor * saturate(attenuation + 0.5);
+    finalColor.rgb = lerp(finalColor.rgb, specularColor, saturate(spec));
+    #endif
+
+
+    // Ambient Color
     float4 ambientColor = UNITY_LIGHTMODEL_AMBIENT * var_BaseMap;
     finalColor.rgb += ambientColor.rgb;
     
